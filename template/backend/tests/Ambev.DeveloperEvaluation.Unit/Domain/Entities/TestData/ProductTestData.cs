@@ -19,7 +19,7 @@ public static class ProductTestData
     /// </summary>
     private static readonly Faker<Product> ProductFaker = new Faker<Product>()
         .RuleFor(u => u.Name, f => f.Commerce.ProductName())
-        .RuleFor(u => u.Price, f => double.Parse(f.Commerce.Price()));
+        .RuleFor(u => u.Price, f => double.Parse(f.Commerce.Price(0.1m, 20)));
 
     /// <summary>
     /// Generates a valid Product entity with randomized data.

@@ -20,6 +20,7 @@ public class OrderItemValidator : AbstractValidator<OrderItem>
         RuleFor(product => product.Discount)
             .GreaterThanOrEqualTo(0).WithMessage("Discount must be greater than or equal to 0.");
 
-
+        RuleFor(product => product.TotalPrice)
+            .GreaterThan(0).WithMessage("Total price must be greater than 0.");
     }
 }

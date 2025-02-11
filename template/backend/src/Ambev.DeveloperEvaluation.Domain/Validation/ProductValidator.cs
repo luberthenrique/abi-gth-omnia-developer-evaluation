@@ -14,6 +14,7 @@ public class ProductValidator : AbstractValidator<Product>
             .MaximumLength(100).WithMessage("Product name cannot be longer than 50 characters.");
 
         RuleFor(product => product.Price)
-            .GreaterThan(0).WithMessage("Product price must be greater than 0.");
+            .GreaterThan(0).WithMessage("Product price must be greater than 0.")
+            .LessThanOrEqualTo(20).WithMessage("Product price must be less than or equal to 20.");
     }
 }

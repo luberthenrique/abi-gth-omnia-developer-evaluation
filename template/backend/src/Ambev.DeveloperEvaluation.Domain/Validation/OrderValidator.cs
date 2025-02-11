@@ -23,6 +23,9 @@ public class OrderValidator : AbstractValidator<Order>
             .MinimumLength(3).WithMessage("Branch must be at least 3 characters long.")
             .MaximumLength(150).WithMessage("Branch cannot be longer than 150 characters.");
 
+        RuleFor(product => product.TotalDiscount)
+            .GreaterThanOrEqualTo(0).WithMessage("Total discount must be greater than or equal to 0.");
+
         RuleFor(product => product.TotalPrice)
             .GreaterThan(0).WithMessage("Total price must be greater than 0.");
 
