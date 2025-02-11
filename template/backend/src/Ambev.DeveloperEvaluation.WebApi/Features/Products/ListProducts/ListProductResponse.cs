@@ -8,5 +8,5 @@ public class ListProductResponse
     /// <summary>
     /// The list of the product
     /// </summary>
-    public List<ListProduct> Products { get; set; } = [];
+    public List<ProductResponse> Products { get; set; } = [];
 }

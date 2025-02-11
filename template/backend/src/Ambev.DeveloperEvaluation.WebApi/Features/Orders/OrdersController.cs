@@ -1,11 +1,13 @@
 ﻿using Ambev.DeveloperEvaluation.Application.Orders.CreateOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.DeleteOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.Application.Orders.ListOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.CreateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.DeleteOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.WebApi.Features.Orders.ListOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.UpdateOrder;
 using AutoMapper;
 using MediatR;
@@ -54,12 +56,7 @@ public class OrdersController : BaseController
         var command = _mapper.Map<CreateOrderCommand>(request);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Created(string.Empty, new ApiResponseWithData<CreateOrderResponse>
-        {
-            Success = true,
-            Message = "Order created successfully",
-            Data = _mapper.Map<CreateOrderResponse>(response)
-        });
+        return Created(string.Empty, _mapper.Map<CreateOrderResponse>(response));
     }
 
     /// <summary>
@@ -84,12 +81,27 @@ public class OrdersController : BaseController
         var command = _mapper.Map<GetOrderCommand>(request.Id);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Ok(new ApiResponseWithData<GetOrderResponse>
-        {
-            Success = true,
-            Message = "Order retrieved successfully",
-            Data = _mapper.Map<GetOrderResponse>(response)
-        });
+        return Ok(_mapper.Map<GetOrderResponse>(response));
+    }
+
+
+    /// <summary>
+    /// Retrieves all order
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The order details if found</returns>
+    [HttpGet]
+    [ProducesResponseType(typeof(ApiResponseWithData<ListOrderResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ListOrders(CancellationToken cancellationToken)
+    {
+        var request = new ListOrderRequest { };
+
+        var command = _mapper.Map<ListOrderCommand>(request);
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return Ok(_mapper.Map<ListOrderResponse>(response));
     }
 
     /// <summary>
@@ -115,12 +127,7 @@ public class OrdersController : BaseController
         var command = _mapper.Map<UpdateOrderCommand>(request);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Ok(new ApiResponseWithData<UpdateOrderResponse>
-        {
-            Success = true,
-            Message = "Order updated successfully",
-            Data = _mapper.Map<UpdateOrderResponse>(response)
-        });
+        return Ok(_mapper.Map<UpdateOrderResponse>(response));
     }
 
     /// <summary>
@@ -145,10 +152,6 @@ public class OrdersController : BaseController
         var command = _mapper.Map<DeleteOrderCommand>(request.Id);
         await _mediator.Send(command, cancellationToken);
 
-        return Ok(new ApiResponse
-        {
-            Success = true,
-            Message = "Order deleted successfully"
-        });
+        return Ok(null);
     }
 }

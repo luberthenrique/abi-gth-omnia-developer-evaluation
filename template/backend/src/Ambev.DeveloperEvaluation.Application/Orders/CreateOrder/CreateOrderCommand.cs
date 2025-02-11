@@ -25,6 +25,11 @@ public class CreateOrderCommand : IRequest<CreateOrderResult>
     public string SalesNumber { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets the order date of the order to be created.
+    /// </summary>
+    public DateTime OrderDate { get; set; }
+
+    /// <summary>
     /// Gets or sets the client of the order to be created.
     /// </summary>
     public string Client { get; set; } = string.Empty;

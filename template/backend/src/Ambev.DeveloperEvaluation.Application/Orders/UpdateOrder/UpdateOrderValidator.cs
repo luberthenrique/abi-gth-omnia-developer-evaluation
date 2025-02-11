@@ -12,16 +12,19 @@ public class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
     /// </summary>
     /// <remarks>
     /// Validation rules include:
-    /// - SalesNumber: Required, must be between 2 and 50 characters
+    /// - Id: Required
     /// - Client: Required, must be between 3 and 150 characters
     /// - Branch: Required, must be between 3 and 150 characters
-    /// - Items: Required
+    /// - OrderDate: Required
+    /// - Items: Must be does not empty
     /// </remarks>
     public UpdateOrderCommandValidator()
     {
+        RuleFor(order => order.Id).NotEmpty();
         RuleFor(order => order.SalesNumber).NotEmpty().Length(2, 50);
         RuleFor(order => order.Client).NotEmpty().Length(3, 150);
         RuleFor(order => order.Branch).NotEmpty().Length(3, 150);
+        RuleFor(order => order.OrderDate).NotEmpty();
         RuleFor(order => order.Items).NotEmpty();
 
         RuleForEach(order => order.Items).SetValidator(new UpdateOrderItemValidator());

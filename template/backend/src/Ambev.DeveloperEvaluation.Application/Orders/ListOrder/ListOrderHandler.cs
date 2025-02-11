@@ -37,6 +37,6 @@ public class ListOrderHandler : IRequestHandler<ListOrderCommand, ListOrderResul
 
         var orders = await _orderRepository.GetAllAsync(cancellationToken);
 
-        return _mapper.Map<ListOrderResult>(orders);
+        return new ListOrderResult { Orders = _mapper.Map<List<OrderResult>>(orders) };
     }
 }

@@ -14,14 +14,18 @@ public class UpdateOrderRequestValidator : AbstractValidator<UpdateOrderRequest>
     /// <remarks>
     /// Validation rules include:
     /// - Id: Required
-    /// - Name: Required, must be between 3 and 100 characters
-    /// - Price: Must be greater than zero
+    /// - Client: Required, must be between 3 and 150 characters
+    /// - Branch: Required, must be between 3 and 150 characters
+    /// - OrderDate: Required
+    /// - Items: Must be does not empty
     /// </remarks>
     public UpdateOrderRequestValidator()
     {
         RuleFor(order => order.Id).NotEmpty();
-        RuleFor(order => order.Name).NotEmpty().Length(3, 100);
-        RuleFor(order => order.Price).GreaterThan(0);
+        RuleFor(order => order.SalesNumber).NotEmpty().Length(2, 50);
+        RuleFor(order => order.Client).NotEmpty().Length(3, 150);
+        RuleFor(order => order.Branch).NotEmpty().Length(3, 150);
+        RuleFor(order => order.OrderDate).NotEmpty();
         RuleFor(order => order.Items).NotEmpty();
 
         RuleForEach(order => order.Items).SetValidator(new UpdateOrderItemRequestValidator());

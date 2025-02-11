@@ -41,7 +41,7 @@ public class OrderTests
             Branch = "", // Invalid: empty
             TotalDiscount = -1, // Invalid: negative
             TotalPrice = -1,// Invalid: negative
-            OrderItems = [] // Invalid: empty
+            Items = [] // Invalid: empty
         };
 
         // Act

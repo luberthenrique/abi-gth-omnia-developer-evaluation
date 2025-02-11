@@ -21,7 +21,7 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
         builder.Property(u => u.TotalPrice).IsRequired().HasPrecision(10, 2);
 
         builder.HasOne(c => c.Order)
-            .WithMany(c => c.OrderItems)
+            .WithMany(c => c.Items)
             .HasForeignKey(c => c.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
 

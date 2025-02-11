@@ -53,7 +53,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// Gets the order's items.
         /// Must not be null or empty.
         /// </summary>
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<OrderItem> Items { get; set; }
 
 
         public void Update(
@@ -70,17 +70,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 
         public void CalculateTotalPrice()
         {
-            TotalPrice = OrderItems.Sum(c => c.TotalPrice);
+            TotalPrice = Items.Sum(c => c.TotalPrice);
         }
 
         public void CalculateTotalDiscount()
         {
-            TotalDiscount = OrderItems.Sum(c => c.Discount);
+            TotalDiscount = Items.Sum(c => c.Discount);
         }
 
         public void RemoveItem(OrderItem orderItem)
         {
-            OrderItems.Remove(orderItem);
+            Items.Remove(orderItem);
         }
 
         public ValidationResultDetail Validate()

@@ -9,7 +9,7 @@ public class GetOrderRequestProfile : Profile
     public GetOrderRequestProfile()
     {
         CreateMap<GetOrderRequest, GetOrderCommand>();
-        CreateMap<GetOrderResult, GetOrderCommand>();
+        CreateMap<GetOrderResult, GetOrderResponse>();
         CreateMap<GetOrderItemResult, GetOrderItemResponse>();
     }
 }

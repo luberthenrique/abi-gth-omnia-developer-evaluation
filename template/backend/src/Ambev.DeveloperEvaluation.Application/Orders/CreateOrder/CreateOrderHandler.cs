@@ -48,7 +48,7 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, CreateOrde
             throw new InvalidOperationException($"Order with sales number {command.SalesNumber} already exists");
 
         var order = _mapper.Map<Order>(command);
-        foreach (var orderItem in order.OrderItems)
+        foreach (var orderItem in order.Items)
         {
             var product = await _productRepository.GetByIdAsync(orderItem.ProductId, cancellationToken);
             if (product == null)

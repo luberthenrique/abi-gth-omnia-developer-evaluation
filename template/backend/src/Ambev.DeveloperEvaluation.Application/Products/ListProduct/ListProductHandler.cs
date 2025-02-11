@@ -35,8 +35,11 @@ public class ListProductHandler : IRequestHandler<ListProductCommand, ListProduc
     public async Task<ListProductResult> Handle(ListProductCommand request, CancellationToken cancellationToken)
     {
 
-        var products = await _productRepository.GetAllAsync(request.ProductName, cancellationToken);
+        var products = await _productRepository.GetAllAsync(request.Name, cancellationToken);
 
-        return _mapper.Map<ListProductResult>(products);
+        return new ListProductResult
+        {
+            Products = _mapper.Map<List<ProductResult>>(products)
+        };
     }
 }

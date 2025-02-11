@@ -8,6 +8,6 @@
         /// <summary>
         /// The list of products
         /// </summary>
-        public List<ListProduct> Products { get; set; } = new();
+        public List<ProductResult> Products { get; set; } = new();
     }
 }

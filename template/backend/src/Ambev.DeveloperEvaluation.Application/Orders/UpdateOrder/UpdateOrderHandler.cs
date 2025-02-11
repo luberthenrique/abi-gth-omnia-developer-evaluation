@@ -44,7 +44,7 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, UpdateOrde
             throw new ValidationException(validationResult.Errors);
 
         var existingOrder = await _orderRepository.GetBySalesNumberAsync(command.SalesNumber, cancellationToken);
-        if (existingOrder != null)
+        if (existingOrder != null && existingOrder.Id != command.Id)
             throw new InvalidOperationException($"Order with sales number {command.SalesNumber} already exists");
 
         var order = await _orderRepository.GetByIdAsync(command.Id, cancellationToken);
@@ -59,7 +59,7 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, UpdateOrde
             if (product == null)
                 throw new KeyNotFoundException($"Product with ID {orderItemCommand.ProductId} not found");
 
-            var existingOrderItem = order.OrderItems.FirstOrDefault(c => c.ProductId == orderItemCommand.ProductId);
+            var existingOrderItem = order.Items.FirstOrDefault(c => c.ProductId == orderItemCommand.ProductId);
             if (existingOrderItem != null && existingOrderItem.Quantity != orderItemCommand.Quantity)
             {
                 existingOrderItem.Update(product.Price, orderItemCommand.Quantity);
@@ -70,14 +70,14 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, UpdateOrde
             {
                 var orderItem = _mapper.Map<OrderItem>(orderItemCommand);
                 orderItem.CalculatePriceAndDiscount(product.Price);
-                order.OrderItems.Add(orderItem);
+                order.Items.Add(orderItem);
             }
 
         }
 
-        var orderItemIdsForRemove = order.OrderItems.Select(c => c.ProductId).Except(command.Items.Select(c => c.ProductId));
-        foreach (var orderItemForemove in order.OrderItems.Where(c => orderItemIdsForRemove.Contains(c.ProductId)))
-            order.OrderItems.Remove(orderItemForemove);
+        var orderItemIdsForRemove = order.Items.Select(c => c.ProductId).Except(command.Items.Select(c => c.ProductId));
+        foreach (var orderItemForemove in order.Items.Where(c => orderItemIdsForRemove.Contains(c.ProductId)))
+            order.Items.Remove(orderItemForemove);
 
         order.CalculateTotalPrice();
         order.CalculateTotalDiscount();

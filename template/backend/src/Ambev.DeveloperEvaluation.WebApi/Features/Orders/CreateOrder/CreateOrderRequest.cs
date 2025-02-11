@@ -11,6 +11,11 @@ public class CreateOrderRequest
     public string SalesNumber { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets the order date.
+    /// </summary>
+    public DateTime OrderDate { get; set; }
+
+    /// <summary>
     /// Gets or sets the client.
     /// </summary>
     public string Client { get; set; } = string.Empty;

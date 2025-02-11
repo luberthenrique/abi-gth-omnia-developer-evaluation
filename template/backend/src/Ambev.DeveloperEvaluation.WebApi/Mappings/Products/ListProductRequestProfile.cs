@@ -10,6 +10,7 @@ public class ListProductRequestProfile : Profile
     public ListProductRequestProfile()
     {
         CreateMap<ListProductRequest, ListProductCommand>();
+        CreateMap<ProductResult, ProductResponse>();
         CreateMap<ListProductResult, ListProductResponse>();
     }
 }

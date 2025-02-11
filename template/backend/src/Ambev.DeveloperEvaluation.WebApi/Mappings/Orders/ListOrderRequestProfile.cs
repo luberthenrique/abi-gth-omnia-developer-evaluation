@@ -10,7 +10,7 @@ public class ListOrderRequestProfile : Profile
     public ListOrderRequestProfile()
     {
         CreateMap<ListOrderRequest, ListOrderCommand>();
-        CreateMap<ListOrderResult, ListOrderResponse>();
         CreateMap<OrderResult, OrderResponse>();
+        CreateMap<ListOrderResult, ListOrderResponse>();
     }
 }

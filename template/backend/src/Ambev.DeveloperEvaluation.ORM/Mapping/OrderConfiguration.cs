@@ -17,6 +17,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(u => u.Client).IsRequired().HasMaxLength(150);
         builder.Property(u => u.Branch).IsRequired().HasMaxLength(150);
         builder.Property(u => u.TotalPrice).IsRequired().HasPrecision(10, 2);
-        builder.Property(u => u.IsCancelled).IsRequired(false);
+        builder.Property(u => u.IsCancelled).IsRequired();
     }
 }

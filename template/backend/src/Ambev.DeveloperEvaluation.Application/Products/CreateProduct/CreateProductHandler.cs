@@ -42,7 +42,7 @@ public class CreateProductHandler : IRequestHandler<CreateProductCommand, Create
 
         var existingProduct = await _productRepository.GetByNameAsync(command.Name, cancellationToken);
         if (existingProduct != null)
-            throw new InvalidOperationException($"Product with email {command.Name} already exists");
+            throw new InvalidOperationException($"Product with name {command.Name} already exists");
 
         var product = _mapper.Map<Product>(command);
 

@@ -11,12 +11,32 @@ public class OrderResponse
     public Guid Id { get; set; }
 
     /// <summary>
-    /// The order's name
+    /// The order's sales number
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public string SalesNumber { get; set; } = string.Empty;
 
     /// <summary>
-    /// The order's price
+    /// The order's date
     /// </summary>
-    public double Price { get; set; }
+    public DateTime OrderDate { get; set; }
+
+    /// <summary>
+    /// The order's client.
+    /// </summary>
+    public string Client { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The order's branch.
+    /// </summary>
+    public string Branch { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The order's total price.
+    /// </summary>
+    public double TotalPrice { get; set; }
+
+    /// <summary>
+    /// The order's is cancelled.
+    /// </summary>
+    public bool IsCancelled { get; set; } = false;
 }

@@ -13,8 +13,8 @@ public class CreateOrderProfile : Profile
     /// </summary>
     public CreateOrderProfile()
     {
-        CreateMap<CreateOrderCommand, Product>();
+        CreateMap<CreateOrderCommand, Order>();
         CreateMap<CreateOrderItemCommand, OrderItem>();
-        CreateMap<Product, CreateOrderResult>();
+        CreateMap<Order, CreateOrderResult>();
     }
 }

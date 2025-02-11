@@ -1,9 +1,9 @@
-namespace Ambev.DeveloperEvaluation.Application.Products.ListProduct;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.ListProduct;
 
 /// <summary>
-/// Response model for ListProduct operation
+/// API response model for a single Product
 /// </summary>
-public class ListProduct
+public class ProductResponse
 {
     /// <summary>
     /// The unique identifier of the product
@@ -16,7 +16,7 @@ public class ListProduct
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// The ´product's price
+    /// The product's price
     /// </summary>
     public double Price { get; set; }
 }

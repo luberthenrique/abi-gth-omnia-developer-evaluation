@@ -23,7 +23,7 @@ public static class OrderTestData
         .RuleFor(u => u.Branch, f => f.Name.FullName())
         .RuleFor(u => u.TotalDiscount, 0)
         .RuleFor(u => u.TotalPrice, f => double.Parse(f.Commerce.Price(1)))
-        .RuleFor(u => u.OrderItems, f => f.Make(1, () => new OrderItem 
+        .RuleFor(u => u.Items, f => f.Make(1, () => new OrderItem 
         { 
             ProductId = Guid.NewGuid(), 
             Quantity = f.Random.Int(1)            

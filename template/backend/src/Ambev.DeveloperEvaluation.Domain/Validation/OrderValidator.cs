@@ -29,7 +29,7 @@ public class OrderValidator : AbstractValidator<Order>
         RuleFor(product => product.TotalPrice)
             .GreaterThan(0).WithMessage("Total price must be greater than 0.");
 
-        RuleFor(product => product.OrderItems)
+        RuleFor(product => product.Items)
             .NotEmpty().WithMessage("Order items is required.");
     }
 }
