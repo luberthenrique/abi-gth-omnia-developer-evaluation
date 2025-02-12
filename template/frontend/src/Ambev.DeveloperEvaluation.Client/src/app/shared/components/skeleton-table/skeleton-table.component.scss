@@ -1,0 +1,42 @@
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  .skeleton-row {
+    display: grid;
+    margin-bottom: 10px;
+
+    .skeleton-cell {
+      flex: 1;
+      height: 30px;
+      background: #e2e8f0;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .skeleton-cell:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.skeleton-table > tbody > tr:hover {
+  background-color: transparent !important;
+  color: transparent !important;
+}

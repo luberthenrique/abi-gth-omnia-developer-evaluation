@@ -13,7 +13,8 @@ public class UpdateOrderProfile : Profile
     /// </summary>
     public UpdateOrderProfile()
     {
-        CreateMap<UpdateOrderCommand, Order>();
+        CreateMap<UpdateOrderCommand, Order>()
+            .ForMember(c => c.OrderDate, c => c.MapFrom(map => map.OrderDate.ToUniversalTime()));
         CreateMap<UpdateOrderItemCommand, OrderItem>();
         CreateMap<Order, UpdateOrderResult>();
     }

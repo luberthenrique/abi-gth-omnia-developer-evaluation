@@ -54,7 +54,7 @@ public class OrderRepository : IOrderRepository
     /// <returns>The order if found, null otherwise</returns>
     public async Task<Order?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _context.Orders.Include(c => c.Items).FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
+        return await _context.Orders.Include(c => c.Items).ThenInclude(c => c.Product).FirstOrDefaultAsync(o=> o.Id == id, cancellationToken);
     }
 
     /// <summary>

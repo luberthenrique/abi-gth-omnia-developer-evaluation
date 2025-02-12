@@ -34,4 +34,14 @@ public class GetOrderItemResult
     /// The order item's total price for product
     /// </summary>
     public double TotalPrice { get; set; }
+
+    /// <summary>
+    /// The order item's product name
+    /// </summary>
+    public string ProductName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The order item's product price
+    /// </summary>
+    public double ProductPrice { get; set; }
 }

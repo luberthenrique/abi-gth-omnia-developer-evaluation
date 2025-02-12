@@ -1,0 +1,22 @@
+<td class="pt-0 align-top">
+  <select class="form-control" [class.is-invalid]="submitted && !f.productId.valid" [formControl]="f.productId">
+    <option [ngValue]="null">(Selecione)</option>
+    <option [ngValue]="product.id" *ngFor="let product of products">{{product.name}}</option>
+  </select>
+  <app-error-msg class="error invalid-feedback" [control]="f.productId" [label]="'produto'" [submitted]="submitted"></app-error-msg>
+</td>
+<td class="pt-0 align-top">
+  <div class="input-group">
+    <button class="btn btn-sm btn-outline-secondary m-0" type="button" (click)="removeQuantity()" [disabled]="f.quantity.disabled || f.quantity.value <= 1"><i class="bi bi-dash"></i></button>
+    <input type="number" class="form-control" style=" border-top-right-radius: 0; border-bottom-right-radius: 0;" [class.is-invalid]="submitted && !f.quantity.valid" [formControl]="f.quantity">
+    <button class="btn btn-sm btn-outline-secondary m-0" type="button" (click)="addQuantity()" [disabled]="f.quantity.disabled"><i class="bi bi-plus"></i></button>
+  </div>
+
+  <app-error-msg class="error invalid-feedback" [control]="f.quantity" [label]="'quantidade'" [submitted]="submitted"></app-error-msg>
+</td>
+<td class="pt-0 align-top"> 
+  <input class="form-control" [class.is-invalid]="submitted && !f.price.valid" [formControl]="f.price">
+</td>
+<td class="pt-0 ps-2 align-top" width="90">
+  <button class="btn btn-success align-top" type="button" (click)="addItem()" [disabled]="this.form.invalid || !isEditable">Adiconar</button>
+</td>

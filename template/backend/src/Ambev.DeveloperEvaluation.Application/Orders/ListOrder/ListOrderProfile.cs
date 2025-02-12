@@ -13,7 +13,7 @@ public class ListOrderProfile : Profile
     /// </summary>
     public ListOrderProfile()
     {
-        CreateMap<Order, OrderResult>();
+        CreateMap<Order, OrderResult>().ForMember(c => c.OrderDate, map => map.MapFrom(c => c.OrderDate.ToLocalTime()));
     }
 }
 

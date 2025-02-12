@@ -1,0 +1,8 @@
+.nav-pills button:first-child{
+    border-bottom-left-radius:inherit;
+}
+
+.nav-pills button:last-child {
+  border-bottom-right-radius: inherit;
+}
+

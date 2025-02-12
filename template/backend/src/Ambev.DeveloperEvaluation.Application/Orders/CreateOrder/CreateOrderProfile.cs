@@ -13,7 +13,8 @@ public class CreateOrderProfile : Profile
     /// </summary>
     public CreateOrderProfile()
     {
-        CreateMap<CreateOrderCommand, Order>();
+        CreateMap<CreateOrderCommand, Order>()
+            .ForMember(c => c.OrderDate, c => c.MapFrom(map => map.OrderDate.ToUniversalTime()));
         CreateMap<CreateOrderItemCommand, OrderItem>();
         CreateMap<Order, CreateOrderResult>();
     }

@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row g-3 mt-0">
+    <div class="col-12 col-sm-8">
+      <label>Nome</label>
+      <input type="text" class="form-control" [class.is-invalid]="(f.name.touched || submitted) && !f.name.valid" [formControl]="f.name" />
+      <app-error-msg class="error invalid-feedback" [control]="f.name" [submitted]="submitted" [label]="'nome'"></app-error-msg>
+    </div>
+    <div class="col-12 col-sm-4">
+      <label>Preço</label>
+      <input type="number" class="form-control" [class.is-invalid]="(f.price.touched || submitted) && !f.price.valid" [formControl]="f.price" />
+      <app-error-msg class="error invalid-feedback" [control]="f.price" [submitted]="submitted" [label]="'preço'"></app-error-msg>
+    </div>
+
+  </div>
+
+  <div class="col-12 col-12 text-right mt-3">
+    <button type="submit" class="btn btn-primary"><span class="far fa-save"></span> Gravar</button>
+    <a routerLink="/product" class="btn btn-default"><span class="fas fa-ban"></span> Cancelar</a>
+  </div>
+</form>

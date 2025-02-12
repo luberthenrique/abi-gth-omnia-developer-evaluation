@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row g-3 mt-0">
+    <div class="col-12 col-sm-8 col-lg-3">
+      <label>Número</label>
+      <input type="text" class="form-control" [class.is-invalid]="(f.salesNumber.touched || submitted) && !f.salesNumber.valid" [formControl]="f.salesNumber" />
+      <app-error-msg class="error invalid-feedback" [control]="f.salesNumber" [submitted]="submitted" [label]="'número'"></app-error-msg>
+    </div>
+    <div class="col-12 col-sm-3">
+      <label>Data</label>
+      <input type="date" class="form-control" [class.is-invalid]="(f.orderDate.touched || submitted) && !f.orderDate.valid" [formControl]="f.orderDate" />
+      <app-error-msg class="error invalid-feedback" [control]="f.orderDate" [submitted]="submitted" [label]="'data'"></app-error-msg>
+    </div>
+    <div class="col-12 col-sm-8 col-lg-6">
+      <label>Cliente</label>
+      <input type="text" class="form-control" [class.is-invalid]="(f.client.touched || submitted) && !f.client.valid" [formControl]="f.client" />
+      <app-error-msg class="error invalid-feedback" [control]="f.client" [submitted]="submitted" [label]="'cliente'"></app-error-msg>
+    </div>
+    <div class="col-12 col-sm-8 col-lg-6">
+      <label>Filial</label>
+      <input type="text" class="form-control" [class.is-invalid]="(f.branch.touched || submitted) && !f.branch.valid" [formControl]="f.branch" />
+      <app-error-msg class="error invalid-feedback" [control]="f.branch" [submitted]="submitted" [label]="'filial'"></app-error-msg>
+    </div>
+
+
+  </div>
+
+  <div class="row g-3 mt-0">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr class="text-center" style="border-style: hidden;">
+            <th class="pt-0 pb-0">Produto</th>
+            <th class="pt-0 pb-0">Quantidade</th>
+            <th class="pt-0 pb-0">Preço unitário</th>
+            <th class="pt-0 pb-0"></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="items?.length == 0">
+          <tr class="w-100" app-form-order-item (addItemEmitter)="addItem($event)" [item]="selectedItem" [isEditable]="isEditable"></tr>
+        </tbody>
+        <tbody *ngIf="items?.length > 0">
+          <tr class="w-100" app-form-order-item (addItemEmitter)="addItem($event)" [item]="selectedItem" [isEditable]="isEditable"></tr>
+          <tr class="w-100" *ngFor="let item of items">
+            <td>{{item.productName}}</td>
+            <td class="text-end">{{item.quantity}}</td>
+            <td class="text-end">R$ {{item.unitPrice | number: '1.2-2'}}</td>
+
+            <td class="text-center">
+              <a [routerLink]="" class="text-warning align-top" (click)="editItem(item)" ngbTooltip="Editar produto." [disabled]="!isEditable"><i class="far fa-edit"></i></a>
+              <a [routerLink]="" class="text-danger align-top ms-2" (click)="removeItem(item)" ngbTooltip="Remover produto." [disabled]="!isEditable"><i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="text-end" colspan="6">
+              <!--<span class="fw-bold text-end">Custo total:</span> R$ {{calculateTotalPrice() | number: '1.2-2'}}-->
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-12 col-12 text-right mt-3">
+    <button type="submit" class="btn btn-primary"><span class="far fa-save"></span> Gravar</button>
+    <a routerLink="/order" class="btn btn-default"><span class="fas fa-ban"></span> Cancelar</a>
+  </div>
+</form>

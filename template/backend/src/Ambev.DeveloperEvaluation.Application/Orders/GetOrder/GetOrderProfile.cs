@@ -13,7 +13,9 @@ public class GetOrderProfile : Profile
     /// </summary>
     public GetOrderProfile()
     {
-        CreateMap<Order, GetOrderResult>();
-        CreateMap<OrderItem, GetOrderItemResult>();
+        CreateMap<Order, GetOrderResult>().ForMember(c => c.OrderDate, map => map.MapFrom(c => c.OrderDate.ToLocalTime()));
+        CreateMap<OrderItem, GetOrderItemResult>()
+            .ForMember(c => c.ProductName, map => map.MapFrom(c => c.Product.Name))
+            .ForMember(c => c.ProductPrice, map => map.MapFrom(c => c.Product.Price));
     }
 }

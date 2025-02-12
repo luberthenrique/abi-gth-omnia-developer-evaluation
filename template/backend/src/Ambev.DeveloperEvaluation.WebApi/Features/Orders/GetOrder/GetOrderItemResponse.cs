@@ -29,4 +29,14 @@ public class GetOrderItemResponse
     /// Must be greater than zero.
     /// </summary>
     public double TotalPrice { get; set; }
+
+    /// <summary>
+    /// The order item's product name
+    /// </summary>
+    public string ProductName { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The order item's product price
+    /// </summary>
+    public double ProductPrice { get; set; }
 }

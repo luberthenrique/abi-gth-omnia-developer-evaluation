@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.toast-body {
+  display: flex;
+}
+
+.toast:hover {
+  --bs-toast-box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+  /*box-shadow: 0 0 12px #000;*/
+  opacity: 1;
+  cursor: pointer
+}
