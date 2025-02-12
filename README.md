@@ -2,6 +2,38 @@
 
 `READ CAREFULLY`
 
+# Running with Docker Compose
+
+## Overview
+
+This project consists of a backend built with .NET Core and a frontend built with Angular 18. Docker Compose is used to easily orchestrate and run the containers for both the backend and frontend services along with other required services such as the database and caching systems.
+
+## Prerequisites
+
+Before running the project with Docker Compose, ensure you have the following installed:
+
+- [Docker](https://www.docker.com/get-started) (including Docker Compose)
+
+## Setting Up
+
+1. **Clone the repository**
+
+   If you haven't already, clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/luberthenrique/abi-gth-omnia-developer-evaluation.git
+   cd your-folder/abi-gth-omnia-developer-evaluation/template/backend
+2. **Running the Project with Docker Compose**
+   Build the Docker images for both the backend and frontend services using the command
+   ```bash
+   docker-compose up --build
+
+3. **Access the Application**
+   After the containers are up and running, you can access the following:
+
+   * Frontend (Angular): Open your browser and navigate to http://localhost:4200.
+   * API (Swagger UI): Open your browser and navigate to https://localhost:8081/swagger.
+   
 ## Instructions
 **The test below will have up to 7 calendar days to be delivered from the date of receipt of this manual.**
 
